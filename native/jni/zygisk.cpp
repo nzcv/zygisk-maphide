@@ -13,7 +13,7 @@
 #include <lsplt.hpp>
 #include <android/log.h>
 
-#define LOG_TAG "MapHide"
+#define LOG_TAG "monoMapHide"
 
 #define LOGV(...) __android_log_print(ANDROID_LOG_VERBOSE, LOG_TAG, __VA_ARGS__)
 #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
@@ -50,6 +50,7 @@ public:
 
     void preAppSpecialize(AppSpecializeArgs *args) override {
         uint32_t flags = api->getFlags();
+        LOGI("preAppSpecialize %d", flags);
     	if ((flags & zygisk::PROCESS_ON_DENYLIST) && args->uid > 1000) {
             DoHide();
     	}
